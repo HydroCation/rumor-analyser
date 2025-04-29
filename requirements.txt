@@ -1,0 +1,35 @@
+# Core libraries
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+
+# Graph/network analysis
+networkx
+
+# Progress bar
+tqdm
+
+# Dashboarding
+streamlit
+
+# PyTorch (with CUDA support — optional if you want GPU training)
+torch==2.7.0+cu128
+torchvision==0.22.0+cu128
+torchaudio==2.7.0+cu128
+# torch-geometric if you're planning GNNs
+torch-geometric==2.6.1
+
+# Optional - for API/dashboard enhancement
+fastapi
+uvicorn
+
+# If needed for visualization/embedding
+pydeck
+altair
+
+# Jupyter Notebooks
+notebook
+ipykernel
+
