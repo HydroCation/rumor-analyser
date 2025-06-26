@@ -1,0 +1,94 @@
+Project: Dynamic Rumor Spread Network Analyzer
+A comprehensive guide from setup to a complete, shareable project.
+
+---
+### Phase 1: Foundational Setup & Core Simulation (The Basics)
+---
+The goal of this phase is to get a basic, non-interactive simulation running in a notebook.
+
+**Step 1: Environment & Project Setup**
+- Create a project folder (e.g., `rumor-analyzer`).
+- Set up a Python virtual environment (`python -m venv venv`).
+- Activate the environment (`source venv/bin/activate`).
+- Create a `requirements.txt` file and add initial libraries:
+  - `numpy`
+  - `pandas`
+  - `matplotlib`
+  - `networkx`
+  - `jupyter`
+- Install the requirements: `pip install -r requirements.txt`.
+
+**Step 2: Network Generation in a Notebook**
+- Create a `notebooks` directory and start a new notebook (e.g., `1-Network-Simulation.ipynb`).
+- Learn to use `networkx` to generate a synthetic social network. A good starting point is the Barabási-Albert model (`nx.barabasi_albert_graph(n, m)`), which creates networks with realistic "hub" nodes.
+- Practice visualizing the graph with `matplotlib` and `networkx.draw()`.
+
+**Step 3: Implement the SIR Simulation Logic**
+- In the same notebook, write a Python function to implement the SIR (Susceptible, Infected, Recovered) model.
+- The function should take a `networkx` graph, an initial infected node, infection probability (`beta`), and recovery probability (`gamma`) as input.
+- It should loop through time steps, updating the state of each node (S, I, or R) based on its neighbors' states.
+- Keep track of the count of S, I, and R nodes at each time step.
+
+**Step 4: Visualize Simulation Results**
+- After running the simulation, use `matplotlib` to create a line plot showing the number of Susceptible, Infected, and Recovered individuals over time. This is the classic SIR curve.
+
+---
+### Phase 2: Building an Interactive Dashboard
+---
+The goal here is to move from a static notebook to a shareable web application.
+
+**Step 5: Introduction to Streamlit**
+- Add `streamlit` to your `requirements.txt` and install it.
+- Create a `dashboard.py` file.
+- Learn the basics: add a title (`st.title`), text (`st.write`), and interactive widgets like a slider (`st.slider`) and a button (`st.button`).
+- Run your app for the first time: `streamlit run dashboard.py`.
+
+**Step 6: Integrate the Simulation into the Dashboard**
+- Move your SIR simulation logic from the notebook into the Streamlit app.
+- Use sliders to allow the user to control parameters like network size, infection probability (`beta`), and recovery rate (`gamma`).
+- When the user clicks a "Run Simulation" button, execute the SIR model and display the resulting SIR curve plot in the app.
+
+**Step 7: Add Interactive Network Visualization**
+- Enhance the dashboard by drawing the network itself.
+- Create a function that colors nodes based on their current state (e.g., Susceptible=blue, Infected=red, Recovered=green).
+- As the simulation runs (or after it finishes), display the colored graph in the Streamlit app. This provides a powerful visual of the spread.
+
+---
+### Phase 3: Machine Learning with Graph Neural Networks (Advanced)
+---
+This is the most advanced part. The goal is to predict rumor spread instead of just simulating it.
+
+**Step 8: Data Generation for the GNN**
+- Create a new notebook (e.g., `2-GNN-Development.ipynb`).
+- Add `torch` and `torch-geometric` to `requirements.txt` and install them.
+- Write a script to run your SIR simulation many times with different parameters, generating a dataset.
+- For each simulation, save snapshots of the graph's state at different time steps. Each snapshot is a data point: the graph structure, node features (e.g., their current S/I/R state), and the "label" (which nodes will be infected in the next step).
+
+**Step 9: Build and Train the GNN Model**
+- Using `torch-geometric`, define a Graph Neural Network (GNN) architecture. A simple Graph Convolutional Network (GCN) is a good start.
+- The model will take a graph snapshot as input and output a probability of infection for each node.
+- Train the GNN on the dataset you generated. The goal is for it to learn the patterns of how the "infection" spreads.
+
+**Step 10: Evaluate the Model**
+- Test your trained model on a separate set of simulation data it has never seen before.
+- Measure its accuracy: How well does it predict which nodes will become infected next?
+
+---
+### Phase 4: Integration, Refinement & Documentation
+---
+The final phase is about creating a polished, well-structured project.
+
+**Step 11: Integrate the GNN into the Dashboard**
+- Save your trained GNN model to a file.
+- Add a new section to your Streamlit dashboard.
+- Allow the user to load a network state, and use your trained model to predict the next set of infected nodes, visualizing the result.
+
+**Step 12: Final Code Structuring**
+- Clean up your project. Move reusable code from notebooks into a `src` directory with separate files (e.g., `src/simulator.py`, `src/graph_utils.py`, `src/model.py`).
+- This makes your project much more organized and professional.
+
+**Step 13: Documentation**
+- Write a high-quality `README.md` file.
+- Explain what the project does, how to install it, and how to run it.
+- Include screenshots or a GIF of your interactive dashboard.
+- Add comments to your code to explain complex parts.
