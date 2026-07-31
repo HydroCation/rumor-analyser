@@ -4,6 +4,10 @@ import matplotlib.pyplot as plt
 def generate_random_graph(n = 50, p = 0.1): #n = nodes, p = probability of edge between any two nodes
     return nx.erdos_renyi_graph(n=n, p=p)
 
+def generate_barabasi_albert_graph(n=50, m=2, seed=None):
+    return nx.barabasi_albert_graph(n=n, m=m, seed=seed)
+
+
 def visualize_graph(graph, status = None, pos = None): #status = dict mapping each node to S I or T
     color_map = {
         "S":"yellow",
