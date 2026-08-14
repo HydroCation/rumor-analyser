@@ -10,3 +10,4 @@ venv/
 *.pkl
 *.h5
 *.pt
+steps_to_take.txt
